@@ -8,7 +8,7 @@ const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 app.use(express.json());
 // extra packages
-//routers
+// routers
 const authRouter = require("./routes/auth");
 const jobsRouter = require("./routes/jobs");
 
@@ -47,7 +47,7 @@ const start = () => {
 
 start();
 
-// // Unhandled Promise Rejection
+// Unhandled Promise Rejection
 process.on("unhandledRejection", (err) => {
   console.log(`Error: ${err.message}`);
   console.log(`Shutting down the server due to Unhandled Promise Rejection`);
