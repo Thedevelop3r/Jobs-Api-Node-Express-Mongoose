@@ -2,6 +2,7 @@ require("dotenv").config();
 require("express-async-errors");
 const express = require("express");
 const connectDB = require("./db/connect");
+const connectDatabase = require("./db/connect");
 const app = express();
 // error handler
 const notFoundMiddleware = require("./middleware/not-found");
@@ -19,13 +20,19 @@ app.use("/api/v1/jobs", jobsRouter);
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
+// Handling Uncaught Exception
+process.on("uncaughtException", (err) => {
+    console.log(`Error: ${err.message}`);
+    console.log(`Shutting down the server due to Uncaught Exception`);
+    process.exit(1);
+})
+
 const port = process.env.PORT || 3000;
 
-const start = async () => {
+const start = () => {
   try {
-    await connectDB(process.env.MONGO_URI).then(
-      console.log("Mogoose Connection Successfull..")
-    );
+     connectDB(process.env.MONGO_URI);
+    
     app.listen(port, () =>
       console.log(`Server is listening on port ${port}...`)
     );
@@ -35,3 +42,14 @@ const start = async () => {
 };
 
 start();
+
+
+// // Unhandled Promise Rejection
+process.on("unhandledRejection", (err) => {
+    console.log(`Error: ${err.message}`);
+    console.log(`Shutting down the server due to Unhandled Promise Rejection`);
+
+    server.close(() => {
+        process.exit(1);
+    });
+});
