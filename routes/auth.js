@@ -1,9 +1,9 @@
-const register = async (req, res) => {
-  res.send("Register User");
-};
+const express = require("express");
+const router = express.Router();
 
-const login = async (req, res) => {
-  res.send("login User");
-};
+const { login, register } = require("../controllers/auth");
 
-module.exports = { register, login };
+router.post("/register", register);
+router.get("/login", login);
+
+module.exports = router;

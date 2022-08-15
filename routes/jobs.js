@@ -1,18 +1,11 @@
-const getAllJobs = async (req, res) => {
-  res.send("Register User");
-};
+const express = require("express");
+const router = express.Router();
 
-const getJob = async (req, res) => {
-  res.send("login User");
-};
-const createJob = async (req, res) => {
-  res.send("login User");
-};
-const updateJob = async (req, res) => {
-  res.send("login User");
-};
-const deleteJob = async (req, res) => {
-  res.send("login User");
-};
+const {
+  getAllJobs,
+  getJob,
+  updateJob,
+  deleteJob,
+  createJob,
+} = require("../controllers/jobs");
 
-module.exports = { register, login };
