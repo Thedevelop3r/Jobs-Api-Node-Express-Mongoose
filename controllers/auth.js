@@ -33,14 +33,13 @@ const login = async (req, res) => {
     // throw UnAthenticated error
     throw new UnauthenticatedError("Invalid Credentials!");
   }
-  // password validation  
+  // password validation
   const isPasswordCorrect = await user.comparePassword(password);
   // if validation failed
-  if(!isPasswordCorrect){
+  if (!isPasswordCorrect) {
     throw new UnauthenticatedError("Invalid Credentials!");
   }
-  
-  
+
   // if user exists we create token and send it back to user with user data
   const token = await user.createJWT();
 
