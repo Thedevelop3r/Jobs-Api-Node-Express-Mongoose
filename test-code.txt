@@ -1,3 +1,107 @@
+const generate = async (req, res) => {
+//   // res.status(200).send('working');
+
+//   for (let i = 0; i < 100; i++) {
+//     let user = generateData(1);
+//     await User.create(user);
+//   }
+
+//   const allusers = await User.find();
+
+//   res.status(StatusCodes.CREATED).json(allusers);
+// };
+// function defination
+function generateData(range) {
+  console.log("called");
+  function randomNumber(size) {
+    return Math.floor(Math.random() * size);
+  }
+  const alphabets = [
+    "a",
+    "b",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+  ];
+
+  const alphabetSize = alphabets.length;
+  const vovels = ["a", "e", "i", "o", "u"];
+  const vovelssize = vovels.length;
+  let peoples = [];
+  let user = {};
+  let index = 0;
+  const PEOPLESIZE = range || 100;
+  for (let i = 0; i <= PEOPLESIZE; i++) {
+    let name = "";
+    let email = "";
+    let password = "";
+    // console.log(name, email, password);
+    for (let a = 0; a <= 5; a++) {
+      if (a == 0) {
+        name += alphabets[randomNumber(alphabetSize)];
+        email += vovels[randomNumber(vovelssize)];
+      }
+      // console.log(name, email, password);
+      if (a == 1) {
+        name += vovels[randomNumber(vovelssize)];
+        email += alphabets[randomNumber(alphabetSize)];
+      }
+      if (a == 2) {
+        name += vovels[randomNumber(vovelssize)];
+        email += alphabets[randomNumber(alphabetSize)];
+      }
+      // console.log(name, email, password);
+
+      name += alphabets[randomNumber(alphabetSize)];
+      email += alphabets[randomNumber(alphabetSize)];
+    }
+    // console.log(name, email, password);
+    for (let b = 0; b < 12; b++) {
+      password += alphabets[randomNumber(alphabetSize)];
+    }
+    email += "@gmail.com";
+    // console.log(name, email, password);
+    let person = {
+      name,
+      email,
+      password,
+    };
+    user = person;
+    //peoples.push(person);
+    //index++;
+  } // main for loop ends
+  console.log({...user});
+  if (range == 1) {
+    return user;
+  }
+  return peoples;
+}
+
+
+
+
 
 // connectDatabase();
 

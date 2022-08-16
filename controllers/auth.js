@@ -15,9 +15,11 @@ const register = async (req, res) => {
   });
 };
 
-
 const login = async (req, res) => {
   res.send("login User");
 };
 
-module.exports = { register, login };
+// 
+
+module.exports = { register, login};
+
